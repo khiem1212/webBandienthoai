@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+  <title>Quản lý sản phẩm</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+    integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous" />
+
+
+  <style>
+    #luu{
+      display: block;
+    }
+    #thay{
+      display: none;
+    }
+    .container {
+      width: 1200px !important;
+    }
+
+    .loader {
+      border: 16px solid #f3f3f3;
+      /* Light grey */
+      border-top: 16px solid #3498db;
+      /* Blue */
+      border-radius: 50%;
+      width: 120px;
+      height: 120px;
+      animation: spin 2s linear infinite;
+    }
+
+    @keyframes spin {
+      0% {
+        transform: rotate(0deg);
+      }
+
+      100% {
+        transform: rotate(360deg);
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+   
+
+    <header class="display-4 my-4">
+      Trang admin
+    </header>
+    <!-- Phan tab menu -->
+    <ul class="nav nav-tabs" role="tablist">
+      <li class="nav-item">
+        <a class="nav-link active" href="./webBanDienThoai-phanNgocKhiem/webBanDienThoai-phanNgocKhiem/index.html" >Trang sản phẩm</a>
+        <a class="nav-link active" href="#DanhSachSP" role="tab" data-toggle="tab">Danh sách sản phẩm</a>
+      
+      </li>
+
+    </ul>
+    <br />
+    <!-- Tab panes -->
+    <div class="tab-content">
+      <!--Danh sách sản phẩm -->
+      <div role="tabpanel" class="tab-pane  in active" id="DanhSachSP">
+        <div class="row">
+          <div class="col-md-8">
+            <!-- BEGIN BUTTOM THÊM MỚI -->
+            <button id="btnThemSP" class="btn btn-success" data-toggle="modal" data-target="#myModal">
+              <i class="fa fa-plus mr-1"></i>
+              Thêm Mới
+            </button>
+            <!-- END BUTTON THÊM MỚI -->
+          </div>
+          <div class="col-md-4">
+            <!-- BEGIN TÌM KIẾM -->
+            
+            <!-- END TÌM KIẾM -->
+          </div>
+        </div>
+        <div class="clear-fix"></div>
+        <div class="tblSanPham" id="tblSanPham">
+          <!-- BEGIN TABLE SẢN PHẨM -->
+
+
+          <div class="loader" id="loading" style="display: none;"></div>
+          <table class="table table-bordered">
+            <thead>
+              <th>Hình ảnh</th>
+              <th>Mô tả</th>
+              <th>Tùy chỉnh</th>
+              
+            </thead>
+            <tbody id="tblDanhSachSP"></tbody>
+          </table>
+          <!-- END TABLE SẢN PHẨM -->
+        </div>
+        <br />
+      </div>
+      <!-- Kết thúc danh sách sản phẩm -->
+    </div>
+
+    <!--KetThuc Tabmenu-->
+
+    <!-- The Modal -->
+    <div class="modal fade" id="myModal">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <!-- Modal Header -->
+          <div class="modal-header">
+            
+            <button type="button" class="close" data-dismiss="modal" id="btnClose">
+              &times;
+            </button>
+          </div>
+          <!-- Modal body -->
+          <input type="hidden" id="text">
+          <div class="modal-body">
+            <div class="form-group">
+              <label>Tên Sản Phẩm</label>
+              <input id="TenSP" class="form-control" placeholder="Nhập vào tên sản phẩm" />
+            <p id="TenSPP"></p>
+            </div>
+            <div class="form-group">
+              <label>Giá</label>
+              <input id="GiaSP" class="form-control" placeholder="Nhập vào giá" />
+              <p id="GiaSPP"></p>
+            </div>
+            <div class="form-group">
+              <label>camera sau</label>
+              <input id="backCamera" class="form-control" placeholder="Nhập vào thong số camera sau " />
+              <p id="backCameraa"></p>
+            </div>
+            <div class="form-group">
+              <label> camera trước</label>
+              <input id="frontCamera" class="form-control" placeholder="Nhập vào thong số camera trước" />
+              <p id="frontCameraa"></p>
+            </div>
+            <div class="form-group">
+              <label>Hình Ảnh</label>
+              <input id="HinhSP" class="form-control" placeholder="Nhập vào link hình ảnh" />
+              <p id="HinhSPP"></p>
+            </div>
+            <div class="form-group">
+              <label>sản phẩm</label>
+              <input id="decreProduct" class="form-control" placeholder="Nhập vào mô tả sản phẩm" />
+              <p id="decreProductt"></p>
+            </div>
+            <div class="form-group">
+              <label>loại điện thoại</label>
+              <input id="typeSP" class="form-control" placeholder="Nhập vào loại điện thoại" />
+              <p id="typeSPP"></p>
+            </div>
+
+          </div>
+          <!-- Modal footer -->
+          <div class="modal-footer">
+            <button class="btn btn-success" onclick=" creatProduct()" id="luu">luu thong tin</button>
+          </div>
+          <div class="modal-footer">
+            <button class="btn btn-success" onclick=" updateProduct()" id="thay">luu thay doi</button>
+            <button type="reset" id="btnReset" class="btn btn-dark">
+              Reset
+            </button>
+           
+          </div>
+          
+        </div>
+      </div>
+    </div>
+  </div>
+  <div id="container"></div>
+  <style>
+    #container {
+      min-width: 310px;
+      max-width: 1200px;
+      height: 400px;
+      margin: 0 auto;
+    }
+  </style>
+  <script src="https://code.jquery.com/jquery-3.3.1.min.js"
+    integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+    integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+    crossorigin="anonymous"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+    integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+    crossorigin="anonymous"></script>
+  <script src="https://code.highcharts.com/highcharts.js"></script>
+  <script src="https://code.highcharts.com/modules/series-label.js"></script>
+  <script src="https://code.highcharts.com/modules/exporting.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.27.2/axios.min.js"
+    integrity="sha512-odNmoc1XJy5x1TMVMdC7EMs3IVdItLPlCeL5vSUPN2llYKMJ2eByTTAIiiuqLg+GdNr9hF6z81p27DArRFKT7A=="
+    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <script src="./model/product.js"></script>
+  <script src="./js/index.js"></script>
+</body>
+
+</html>
