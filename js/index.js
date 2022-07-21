@@ -205,14 +205,4 @@ function validateForm() {
 }
 
 
-function checkNumner(val, spanId) {
-    var letter = /^[0-9]+$/;
-    if (val.match(letter)) {
-        document.getElementById(spanId).innerHTML = "";
-        return true;
-    }
 
-    //false
-    document.getElementById(spanId).innerHTML = "* Vui lòng nhập số";
-    return false;
-}
