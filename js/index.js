@@ -78,17 +78,20 @@ function creatProduct() {
     var prodtype = getEle("typeSP").value;
 
     var product = new Product(prodName, prodPrice, prodBackCamera, prodbackFrontCamera, prodbackimg, proddesc, prodtype);
-
+console.log(Product);
     axios({
         url: "https://62bc4dcaeff39ad5ee2239f3.mockapi.io/api/productPhone",
         method: "POST",
         data: product,
     })
         .then(function (res) {
-            // console.log(res);
+            console.log(res);
             getListProduct();
             getEle("btnClose").click();
-            Product();
+         
+          
+            // Product();
+        
             // tat form
         })
         .catch(function (err) {
@@ -159,7 +162,7 @@ function updateProduct() {
             document.getElementById("thay").style.display = "none";
 
             getEle("btnClose").click();
-            Product();
+        
 
 
 
@@ -167,16 +170,8 @@ function updateProduct() {
         .catch(function (err) {
             console.log(err);
         })
-}
-function Product() {
-    getEle("TenSP").value = "";
-    getEle("GiaSP").value = "";
-    getEle("backCamera").value = "";
-    getEle("frontCamera").value = "";
-    getEle("HinhSP").value = "";
-    getEle("decreProduct").value = "";
-    getEle("typeSP").value = "";
-    getEle("text").value = "";
+
+    
 }
 
 function checkRequired(val, spanId) {
