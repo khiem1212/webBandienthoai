@@ -195,7 +195,7 @@ function validateForm() {
     var prodtype = getEle("typeSP").value;
 
     isValid = checkRequired(prodName, "TenSPP");
-    isValid &= checkRequired(prodPrice, "GiaSPP") && checkNumner(prodPrice, "GiaSPP");
+    isValid &= checkRequired(prodPrice, "GiaSPP") ;
     isValid = checkRequired(prodBackCamera, "backCameraa");
     isValid = checkRequired(prodbackFrontCamera, "frontCameraa");
     isValid = checkRequired(prodbackimg, "HinhSPP");
@@ -203,6 +203,5 @@ function validateForm() {
     isValid = checkRequired(prodtype, "typeSPP");
     return isValid;
 }
-
 
 
